@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed;
     public Rigidbody rigidbody;
 
+    public float yLimit = -10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +22,10 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 playerDirection = player.transform.position - transform.position;
         rigidbody.AddForce(playerDirection.normalized * moveSpeed);
+
+        if(transform.position.y < yLimit)
+        {
+            Destroy(gameObject);
+        }
     }
 }
